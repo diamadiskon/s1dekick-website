@@ -2173,22 +2173,22 @@
       btn.textContent = 'Sending...';
 
       const data = {
+        access_key: '786bb195-016b-422f-b403-960bbd35c3d6',
+        subject: 'New s1dekick enquiry',
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         business: document.getElementById('business').value,
-        pain: document.getElementById('pain').value,
-        _subject: 'New s1dekick enquiry',
-        _template: 'table'
+        pain: document.getElementById('pain').value
       };
 
       try {
-        const res = await fetch('https://formsubmit.co/ajax/sales@s1dekick.com', {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data)
         });
         const result = await res.json();
-        if (result.success === 'true') {
+        if (result.success) {
           window.location.href = 'thankyou.html';
         } else {
           throw new Error(result.message || 'Form submission failed');
