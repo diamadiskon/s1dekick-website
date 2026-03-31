@@ -2187,10 +2187,11 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data)
         });
-        if (res.ok) {
+        const result = await res.json();
+        if (result.success === 'true') {
           window.location.href = 'thankyou.html';
         } else {
-          throw new Error('Form submission failed');
+          throw new Error(result.message || 'Form submission failed');
         }
       } catch (err) {
         btn.disabled = false;
